@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Zap, Bot, Briefcase, Globe, ArrowRight } from 'lucide-react';
 
 const upcomingFeatures = [
@@ -32,6 +33,49 @@ interface ComingSoonProps {
 }
 
 export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let intervalId: any;
+
+    const startAutoScroll = () => {
+      intervalId = setInterval(() => {
+        const { scrollLeft, scrollWidth, clientWidth } = container;
+        // If we are at the end, scroll back to the start
+        if (scrollLeft + clientWidth >= scrollWidth - 15) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          const firstChild = container.firstElementChild as HTMLElement;
+          const cardWidth = firstChild ? firstChild.offsetWidth : 360;
+          const gap = 24; // gap-6 is 24px
+          container.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+        }
+      }, 3500); // Scroll every 3.5 seconds
+    };
+
+    startAutoScroll();
+
+    const stopAutoScroll = () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+
+    container.addEventListener('mouseenter', stopAutoScroll);
+    container.addEventListener('mouseleave', startAutoScroll);
+    container.addEventListener('touchstart', stopAutoScroll);
+    container.addEventListener('touchend', startAutoScroll);
+
+    return () => {
+      stopAutoScroll();
+      container.removeEventListener('mouseenter', stopAutoScroll);
+      container.removeEventListener('mouseleave', startAutoScroll);
+      container.removeEventListener('touchstart', stopAutoScroll);
+      container.removeEventListener('touchend', startAutoScroll);
+    };
+  }, []);
+
   return (
     <section id="roadmap" className="py-32 bg-dark overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -52,7 +96,10 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
 
 
       <div className="relative max-w-[1400px] mx-auto px-6">
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 pt-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 pt-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        >
           {upcomingFeatures.map((feat, idx) => {
             const Icon = feat.icon;
             return (
