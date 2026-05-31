@@ -1,0 +1,6 @@
+{
+  "name": "Edgecute",
+  "description": "Plataforma de inteligencia y backtesting para shorters de small caps US.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

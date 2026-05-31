@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-copper: #C9691F;
+  --color-dark: #0A0A0B;
+  --color-darker: #050505;
+  --color-surface: #141416;
+  --color-surface-hover: #1A1A1D;
+  --color-border: #232326;
+}
+
+body {
+  @apply bg-dark text-gray-300 font-sans antialiased selection:bg-copper selection:text-white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply text-white tracking-tight;
+}
+
+.copper-gradient {
+  background: linear-gradient(135deg, #C9691F 0%, #A25215 100%);
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
