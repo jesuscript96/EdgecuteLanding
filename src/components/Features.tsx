@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { LineChart, LayoutDashboard, TerminalSquare, Play } from 'lucide-react';
+import { LineChart, LayoutDashboard, TerminalSquare, Database, Play } from 'lucide-react';
 
 import datasetVideo from '../../assets/Edgecutedataset.webm';
 import strategyVideo from '../../assets/Edgecutestrategy.webm';
@@ -8,35 +8,35 @@ import marketVideo from '../../assets/marketAnalysis.webm';
 
 const tabs = [
   {
-    id: 'sombra',
-    title: 'Journal & Scanner',
-    subtitle: 'El día a día de La Sombra',
-    icon: LayoutDashboard,
-    content: 'Unifica tu rutina. Deja de saltar entre 5 pestañas. Scanner pre-mercado y journal para tus CSV de DAS, todo en una vista.',
-    imageMock: 'dashboard'
-  },
-  {
-    id: 'research',
-    title: 'Ticker Research & Dilution',
-    subtitle: 'Data densa, en vivo',
+    id: 'analisis',
+    title: 'Análisis de Tickers',
+    subtitle: 'Contexto inmediato',
     icon: TerminalSquare,
-    content: 'Historial de offerings, shelf registrations, float rotation y dilution metrics integradas en tu research. Sin pagar $90 extra.',
+    content: 'Información clave de float, dirección de cierre diario y links directos a noticias relevantes para entender el contexto inmediato del ticker sin perder tiempo.',
     imageMock: 'terminal'
   },
   {
-    id: 'cazador',
-    title: 'Backtester No-Code',
-    subtitle: 'El arsenal de El Cazador',
+    id: 'backtest',
+    title: 'Backtesting Completo',
+    subtitle: 'Simulación histórica',
     icon: LineChart,
-    content: 'Construye estrategias en 2 minutos. Control de look-ahead bias, Monte Carlo y walk-forward sobre 20 años de minute data Polygon.',
+    content: 'Motor de simulación de alta velocidad sobre datos históricos con desglose individual de trades, configuración de variables operativas y cálculo de métricas de rendimiento clave.',
     imageMock: 'chart'
+  },
+  {
+    id: 'repositorio',
+    title: 'Repositorio & Comparativa',
+    subtitle: 'Gestión de estrategias',
+    icon: Database,
+    content: 'Almacena tus setups, gestiona tus datasets históricos y contrasta el rendimiento relativo de tus estrategias de forma gráfica y unificada.',
+    imageMock: 'dashboard'
   }
 ];
 
 const tabVideos: Record<string, string> = {
-  sombra: marketVideo,
-  research: datasetVideo,
-  cazador: strategyVideo,
+  analisis: marketVideo,
+  backtest: strategyVideo,
+  repositorio: datasetVideo,
 };
 
 // Video component with click-to-pause functionality for a premium feel
@@ -177,7 +177,7 @@ export function Features() {
                    </div>
                    <div className="h-5 w-px bg-border"></div>
                    <div className="font-mono text-[10px] text-gray-500 uppercase tracking-widest">
-                     workspace • {tab.id === 'sombra' ? 'dashboard' : tab.id === 'research' ? 'terminal_view' : 'builder'}
+                     workspace • {tab.id === 'analisis' ? 'ticker_analysis' : tab.id === 'backtest' ? 'backtester' : 'strategy_repo'}
                    </div>
                 </div>
                 

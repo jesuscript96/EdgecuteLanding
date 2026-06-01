@@ -1,30 +1,47 @@
-import { useEffect, useRef } from 'react';
-import { Zap, Bot, Briefcase, Globe, ArrowRight } from 'lucide-react';
+import { ArrowRight, FileText, BarChart3, ShieldCheck, PenTool, Layers, Bell, BookOpen } from 'lucide-react';
 
 const upcomingFeatures = [
   {
-    icon: Zap,
-    title: 'Alertas Live',
-    description: 'Notificaciones vía webhook o SMS cuando tu setup ideal con look-ahead bias se forma en el scanner intradía.',
-    tag: 'Infra'
+    icon: FileText,
+    title: 'Información Dilutiva',
+    description: 'Ampliación del análisis de tickers con análisis automático y resumen inteligente de información dilutiva (S-3, S-1, ATMs, warrants).',
+    tag: 'Fase 2 • SEC'
   },
   {
-    icon: Bot,
-    title: 'Ejecución Automatizada',
-    description: 'API directa para enrutar órdenes basadas en tus estrategias testeadas, modelando slippage avanzado.',
-    tag: 'Quant'
+    icon: BarChart3,
+    title: 'Market Análisis',
+    description: 'Monitoreo en tiempo real del entorno de gappers y runners, detección de simpatías de mercado (sympathy plays) y métricas complejas.',
+    tag: 'Fase 2 • Estructura'
   },
   {
-    icon: Briefcase,
-    title: 'Portfolios Dinámicos',
-    description: 'Rebalanceo dinámico y análisis de correlaciones de Pearson entre múltiples estrategias.',
-    tag: 'Risk'
+    icon: PenTool,
+    title: 'Journal de Álvaro',
+    description: 'Bitácora operativa automatizada diseñada por Álvaro más gestor de notas avanzado para el aprendizaje y optimización operativa.',
+    tag: 'Fase 2 • Bitácora'
   },
   {
-    icon: Globe,
-    title: 'Large Caps & Futuros',
-    description: 'Expansión del universo de datos más allá de small caps. Mismo backtester, nuevos mercados.',
-    tag: 'Data'
+    icon: Bell,
+    title: 'Screener y Alertas',
+    description: 'Buscador en tiempo real con alarmas acústicas y visuales según tus presets y parámetros de estrategias individuales.',
+    tag: 'Fase 2 • Alertas'
+  },
+  {
+    icon: BookOpen,
+    title: 'Tutoriales & Soporte',
+    description: 'Portal de tutoriales prácticos guiados paso a paso y canal de soporte individualizado para dominar la plataforma al 100%.',
+    tag: 'Fase 2 • Soporte'
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Validación y Robustez',
+    description: 'Simulaciones de Montecarlo Bootstrap y validación Walk-Forward para modelar el nivel de Drawdown máximo soportable.',
+    tag: 'Fase 3 • Validación'
+  },
+  {
+    icon: Layers,
+    title: 'Portfolio Manager',
+    description: 'Integración de estrategias en portafolios ponderados por modelos estadísticos, analíticas VaR y CVaR, y matrices de correlación.',
+    tag: 'Fase 3 • Riesgo'
   }
 ];
 
@@ -33,48 +50,8 @@ interface ComingSoonProps {
 }
 
 export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    let intervalId: any;
-
-    const startAutoScroll = () => {
-      intervalId = setInterval(() => {
-        const { scrollLeft, scrollWidth, clientWidth } = container;
-        // If we are at the end, scroll back to the start
-        if (scrollLeft + clientWidth >= scrollWidth - 15) {
-          container.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          const firstChild = container.firstElementChild as HTMLElement;
-          const cardWidth = firstChild ? firstChild.offsetWidth : 360;
-          const gap = 24; // gap-6 is 24px
-          container.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
-        }
-      }, 3500); // Scroll every 3.5 seconds
-    };
-
-    startAutoScroll();
-
-    const stopAutoScroll = () => {
-      if (intervalId) clearInterval(intervalId);
-    };
-
-    container.addEventListener('mouseenter', stopAutoScroll);
-    container.addEventListener('mouseleave', startAutoScroll);
-    container.addEventListener('touchstart', stopAutoScroll);
-    container.addEventListener('touchend', startAutoScroll);
-
-    return () => {
-      stopAutoScroll();
-      container.removeEventListener('mouseenter', stopAutoScroll);
-      container.removeEventListener('mouseleave', startAutoScroll);
-      container.removeEventListener('touchstart', stopAutoScroll);
-      container.removeEventListener('touchend', startAutoScroll);
-    };
-  }, []);
+  // Duplicate features array to create a seamless infinite marquee effect
+  const doubleFeatures = [...upcomingFeatures, ...upcomingFeatures];
 
   return (
     <section id="roadmap" className="py-32 bg-dark overflow-hidden">
@@ -82,7 +59,7 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
         <div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Honestidad técnica.</h2>
           <p className="text-gray-400 text-lg md:text-xl font-light">
-            No te vendemos promesas. Esto es lo que no está hoy, pero llegará en Fase 2.
+            No te vendemos humo. Esto es lo que no está hoy en el MVP, planificado para las siguientes fases de desarrollo.
           </p>
         </div>
         <button 
@@ -94,18 +71,16 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
         </button>
       </div>
 
-
-      <div className="relative max-w-[1400px] mx-auto px-6">
-        <div 
-          ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 pt-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-        >
-          {upcomingFeatures.map((feat, idx) => {
+      <div className="relative w-full mx-auto px-6 overflow-hidden">
+        {/* Smooth scrolling CSS marquee container */}
+        <div className="flex gap-6 pb-12 pt-4 animate-marquee hover:[animation-play-state:paused]">
+          {doubleFeatures.map((feat, idx) => {
             const Icon = feat.icon;
+            const originalIdx = idx % upcomingFeatures.length;
             return (
               <div 
                 key={idx} 
-                className="bg-surface border border-border rounded-[2rem] flex flex-col w-[340px] md:w-[400px] h-[520px] snap-center shrink-0 overflow-hidden group cursor-pointer"
+                className="bg-surface border border-border rounded-[2rem] flex flex-col w-[340px] md:w-[400px] h-[520px] shrink-0 overflow-hidden group cursor-pointer"
               >
                 {/* Content (Top) */}
                 <div className="p-10 pb-0 flex flex-col items-start gap-5 flex-none">
@@ -137,55 +112,110 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
                     </div>
 
                     {/* Specific Fake Content per card type */}
-                    {idx === 0 && ( // Alertas Live
+                    {originalIdx === 0 && ( // Dilution
                       <>
-                        <div className="h-8 bg-green-500/10 border border-green-500/20 rounded flex items-center px-3 gap-2">
-                          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                          <div className="w-20 h-2 bg-green-500/50 rounded"></div>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>FORM S-3 / AMENDMENT</span>
+                          <span className="text-copper">ACTIVE SHELF</span>
                         </div>
-                        <div className="h-12 bg-darker border border-border rounded p-2 flex flex-col gap-2">
-                          <div className="w-3/4 h-2 bg-gray-700 rounded"></div>
-                          <div className="w-1/2 h-2 bg-gray-600 rounded"></div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex flex-col gap-2 justify-center">
+                          <div className="w-11/12 h-2 bg-copper/20 rounded"></div>
+                          <div className="w-2/3 h-2 bg-gray-700 rounded"></div>
                         </div>
                       </>
                     )}
                     
-                    {idx === 1 && ( // Ejecución
+                    {originalIdx === 1 && ( // Market Analysis
                       <>
-                        <div className="flex justify-between items-center text-xs font-mono text-gray-500 mb-2">
-                           <span>POST /api/v1/order</span>
-                           <span className="text-copper">200 OK</span>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>GAPPERS & RUNNERS</span>
+                          <span className="text-green-500">+142%</span>
                         </div>
-                        <div className="flex-1 bg-darker rounded border border-border p-3 flex flex-col gap-2">
-                           <div className="w-full h-2 bg-copper/20 rounded"></div>
-                           <div className="w-2/3 h-2 bg-copper/20 rounded"></div>
-                           <div className="w-4/5 h-2 bg-copper/20 rounded"></div>
-                        </div>
-                      </>
-                    )}
-
-                    {idx === 2 && ( // Portfolios
-                      <>
-                        <div className="flex gap-4 h-full pt-2">
-                          <div className="w-16 h-16 rounded-full border-4 border-border border-t-copper border-r-copper shrink-0"></div>
-                          <div className="flex flex-col gap-2 w-full justify-center">
-                            <div className="w-full h-2 bg-border rounded"></div>
-                            <div className="w-2/3 h-2 bg-border rounded"></div>
-                            <div className="w-4/5 h-2 bg-border rounded"></div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex items-center justify-between">
+                          <div className="flex flex-col gap-1 w-2/3">
+                            <div className="w-full h-1.5 bg-gray-700 rounded"></div>
+                            <div className="w-3/4 h-1.5 bg-gray-600 rounded"></div>
+                          </div>
+                          <div className="w-8 h-8 rounded-full border border-dashed border-copper/30 flex items-center justify-center text-[9px] font-mono text-copper">
+                            SYM
                           </div>
                         </div>
                       </>
                     )}
 
-                    {idx === 3 && ( // Large Caps
+                    {originalIdx === 2 && ( // Journal de Alvaro
                       <>
-                        <div className="grid grid-cols-2 gap-2 h-full">
-                          {[1, 2, 3, 4].map((i) => (
-                            <div key={i} className="bg-darker border border-border rounded p-2 flex flex-col justify-between">
-                              <div className="w-8 h-2 bg-gray-600 rounded"></div>
-                              <div className="w-16 h-3 bg-copper/50 rounded"></div>
-                            </div>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>JOURNAL LOG</span>
+                          <span className="text-gray-400">06/01</span>
+                        </div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex flex-col gap-1">
+                          <div className="text-[9px] font-mono text-green-400">+$1,420.00 (VWAP Fade Setup)</div>
+                          <div className="w-11/12 h-1 bg-gray-700 rounded"></div>
+                        </div>
+                      </>
+                    )}
+
+                    {originalIdx === 3 && ( // Screener
+                      <>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>LIVE SCREENER FEED</span>
+                          <span className="text-red-500 animate-pulse">ALERT</span>
+                        </div>
+                        <div className="h-12 bg-red-950/20 border border-red-500/20 rounded p-2 flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
+                          <div className="flex flex-col">
+                            <span className="text-[10px] font-bold text-white leading-none">HALT WARNING: XYZ</span>
+                            <span className="text-[8px] font-mono text-gray-500 leading-none mt-1">Float Rotation &gt; 2.5</span>
+                          </div>
+                        </div>
+                      </>
+                    )}
+
+                    {originalIdx === 4 && ( // Tutoriales
+                      <>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>EDGE KNOWLEDGEBASE</span>
+                          <span className="text-gray-400">HELP</span>
+                        </div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex items-center gap-2">
+                          <div className="w-6 h-6 rounded bg-copper/10 flex items-center justify-center text-copper font-bold text-[10px]">
+                            ?
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <div className="w-24 h-1.5 bg-gray-700 rounded"></div>
+                            <div className="w-16 h-1.5 bg-gray-600 rounded"></div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+
+                    {originalIdx === 5 && ( // Validation & Robustness
+                      <>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>MONTE CARLO SIMULATOR</span>
+                          <span className="text-gray-400">95% CI</span>
+                        </div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex items-end gap-1 justify-between">
+                          {[40, 60, 30, 80, 50, 90, 70, 45, 65, 85].map((h, i) => (
+                            <div key={i} className="bg-copper/30 w-1.5 rounded-t" style={{ height: `${h}%` }}></div>
                           ))}
+                        </div>
+                      </>
+                    )}
+
+                    {originalIdx === 6 && ( // Portfolio
+                      <>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>PORTFOLIO ALLOCATION</span>
+                          <span className="text-copper">VaR: 4.2%</span>
+                        </div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex gap-3 items-center">
+                          <div className="w-6 h-6 rounded-full border-2 border-copper/30 border-t-copper shrink-0 animate-spin" style={{ animationDuration: '4s' }}></div>
+                          <div className="flex flex-col gap-1 w-full">
+                            <div className="w-full h-1 bg-gray-700 rounded"></div>
+                            <div className="w-2/3 h-1 bg-gray-600 rounded"></div>
+                          </div>
                         </div>
                       </>
                     )}

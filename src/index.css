@@ -33,3 +33,19 @@ h1, h2, h3, h4, h5, h6 {
   display: none;  /* Chrome, Safari and Opera */
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 12px)); /* Seamless transition offset by half the gap-6 (24px) */
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+

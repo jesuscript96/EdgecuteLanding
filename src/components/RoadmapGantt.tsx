@@ -1,152 +1,129 @@
 import { useState } from 'react';
-import { ArrowLeft, Calendar, Flag, CheckCircle2, PlayCircle, HelpCircle } from 'lucide-react';
+import { ArrowLeft, Calendar, CheckCircle2, PlayCircle, HelpCircle } from 'lucide-react';
 
 interface RoadmapItem {
   id: string;
   title: string;
   description: string;
-  track: 'scanner' | 'dilution' | 'backtester' | 'execution' | 'risk';
-  startSprint: number; // 1-indexed (1 to 6)
+  track: 'analisis' | 'backtester' | 'dilution' | 'risk' | 'scanner' | 'execution';
+  startSprint: number; // 1-indexed (1 to 8)
   durationSprints: number; // number of sprints this spans
   status: 'done' | 'active' | 'planned';
+  phase: string;
 }
 
 const roadmapItems: RoadmapItem[] = [
-  // Track 1: Scanner & Core
+  // Track 1: Análisis
   {
-    id: 'd1',
-    title: 'CSV Parser (DAS & Sterling)',
-    description: 'Importación directa sin fricciones de los formatos de archivo más populares utilizados por traders intradía.',
-    track: 'scanner',
+    id: 'a1',
+    title: 'Análisis de Tickers (Core)',
+    description: 'Información clave de float, dirección de cierre diario y links directos a noticias relevantes integrada por ticker.',
+    track: 'analisis',
     startSprint: 1,
     durationSprints: 1,
     status: 'done',
+    phase: 'MVP (Disponible)'
   },
   {
-    id: 'd2',
-    title: 'Scanner Pre-mercado Live',
-    description: 'Filtros rápidos e inteligentes en tiempo real para encontrar las small caps con mayor volumen antes de la apertura.',
-    track: 'scanner',
-    startSprint: 1,
-    durationSprints: 2,
-    status: 'done',
-  },
-  {
-    id: 'd3',
-    title: 'Websocket Live Ticker Feed',
-    description: 'Integración de feeds de datos bidireccionales ultrarrápidos directamente en el navegador del usuario.',
-    track: 'scanner',
-    startSprint: 2,
-    durationSprints: 2,
-    status: 'active',
-  },
-
-  // Track 2: Dilution & SEC
-  {
-    id: 'di1',
-    title: 'SEC Filings Scraper (S-3, S-1)',
-    description: 'Detección automática en segundos de shelf registrations y ofertas registradas en SEC EDGAR.',
-    track: 'dilution',
-    startSprint: 2,
-    durationSprints: 2,
-    status: 'active',
-  },
-  {
-    id: 'di2',
-    title: 'Float Rotation Estimator',
-    description: 'Modelado en vivo del volumen relativo respecto al float para estimar si las acciones están atrapadas.',
+    id: 'a2',
+    title: 'Ampliación Dilutiva (SEC)',
+    description: 'Análisis automático y resumen inteligente de información dilutiva (warrants, convertibles, ATMs, S-3/S-1).',
     track: 'dilution',
     startSprint: 3,
     durationSprints: 2,
     status: 'planned',
-  },
-  {
-    id: 'di3',
-    title: 'Calculador de Dilución SEC',
-    description: 'Algoritmo que calcula el impacto potencial de warrants, convertibles y ATMs sobre el precio actual.',
-    track: 'dilution',
-    startSprint: 4,
-    durationSprints: 2,
-    status: 'planned',
+    phase: 'Fase 2'
   },
 
-  // Track 3: Backtester No-Code
+  // Track 2: Backtester
   {
     id: 'b1',
-    title: 'Polygon Database Parser',
-    description: 'Indexado de más de 20 años de datos históricos a nivel de minuto en nuestros servidores optimizados.',
+    title: 'Motor de Backtest Completo',
+    description: 'Simulación histórica con configuración de variables, desglose de trades y cálculo de métricas clave (Expectancy, Sharpe).',
     track: 'backtester',
     startSprint: 1,
     durationSprints: 2,
     status: 'done',
+    phase: 'MVP (Disponible)'
   },
   {
     id: 'b2',
-    title: 'Visual Strategy Builder',
-    description: 'Interfaz gráfica intuitiva para definir setups técnicos de entrada/salida sin escribir una sola línea de código.',
+    title: 'Robustez y Validación Avanzada',
+    description: 'Módulo de simulaciones de Montecarlo Bootstrap y validación Walk-Forward para gestionar el DD máximo soportable.',
     track: 'backtester',
-    startSprint: 3,
-    durationSprints: 2,
-    status: 'active',
-  },
-  {
-    id: 'b3',
-    title: 'Monte Carlo Simulator',
-    description: 'Pruebas de estrés aleatorias para validar la consistencia de tu estrategia ante variaciones del mercado.',
-    track: 'backtester',
-    startSprint: 4,
+    startSprint: 6,
     durationSprints: 2,
     status: 'planned',
-  },
-  {
-    id: 'b4',
-    title: 'Look-Ahead Bias Validator',
-    description: 'Algoritmo de análisis estricto para evitar que tus estrategias usen información del futuro durante el test.',
-    track: 'backtester',
-    startSprint: 5,
-    durationSprints: 2,
-    status: 'planned',
+    phase: 'Fase 3'
   },
 
-  // Track 4: Execution & API
-  {
-    id: 'e1',
-    title: 'API Order Execution Engine',
-    description: 'Integración inicial con brokers regulados (Interactive Brokers) para automatizar la compra/venta.',
-    track: 'execution',
-    startSprint: 4,
-    durationSprints: 2,
-    status: 'planned',
-  },
-  {
-    id: 'e2',
-    title: 'Slippage & Commissions Modeler',
-    description: 'Simulador de fricción real para descontar spread y costes de transacción del rendimiento esperado.',
-    track: 'execution',
-    startSprint: 5,
-    durationSprints: 2,
-    status: 'planned',
-  },
-
-  // Track 5: Portfolios & Risk
+  // Track 3: Repositorio & Portfolios
   {
     id: 'r1',
-    title: 'Pearson Correlation Matrix',
-    description: 'Identifica si tus múltiples estrategias operan con correlación excesiva sobre los mismos tickers.',
+    title: 'Repositorio de Estrategias',
+    description: 'Gestión centralizada de setups, carga de datasets históricos y comparador gráfico de curvas de equity.',
     track: 'risk',
-    startSprint: 5,
-    durationSprints: 1,
-    status: 'planned',
+    startSprint: 1,
+    durationSprints: 2,
+    status: 'done',
+    phase: 'MVP (Disponible)'
   },
   {
     id: 'r2',
-    title: 'Risk Distribution Dashboard',
-    description: 'Paneles detallados de Drawdown Máximo, Expectativa Matemática de Profit y ratios de volatilidad Sharpe/Sortino.',
+    title: 'Portfolio Manager & Ponderación',
+    description: 'Consolidación de múltiples estrategias, rebalanceo de pesos, matrices de correlación y analíticas VaR/CVaR.',
     track: 'risk',
-    startSprint: 6,
+    startSprint: 7,
+    durationSprints: 2,
+    status: 'planned',
+    phase: 'Fase 3'
+  },
+
+  // Track 4: Screener & Market
+  {
+    id: 's1',
+    title: 'Market Análisis (Gappers/Runners)',
+    description: 'Detección y control de gappers y runners, simpatías de mercado (sympathy plays) y analíticas complejas.',
+    track: 'scanner',
+    startSprint: 3,
+    durationSprints: 2,
+    status: 'planned',
+    phase: 'Fase 2'
+  },
+  {
+    id: 's2',
+    title: 'Screener y Alertas Live',
+    description: 'Buscador en tiempo real con alarmas acústicas y visuales según tus presets y parámetros de estrategias individuales.',
+    track: 'scanner',
+    startSprint: 4,
+    durationSprints: 2,
+    status: 'planned',
+    phase: 'Fase 2'
+  },
+
+  // Track 5: Journal & Notas
+  {
+    id: 'j1',
+    title: 'Journal de Álvaro + Notas',
+    description: 'Bitácora automatizada de operaciones según el diseño de Álvaro y gestor de notas estructuradas para el aprendizaje.',
+    track: 'scanner',
+    startSprint: 4,
+    durationSprints: 2,
+    status: 'planned',
+    phase: 'Fase 2'
+  },
+
+  // Track 6: Soporte & Docs
+  {
+    id: 'e1',
+    title: 'Tutoriales & Soporte Personalizado',
+    description: 'Portal de tutoriales prácticos guiados paso a paso y canal de soporte individualizado para dominar la plataforma.',
+    track: 'execution',
+    startSprint: 5,
     durationSprints: 1,
     status: 'planned',
-  },
+    phase: 'Fase 2'
+  }
 ];
 
 const sprints = [
@@ -156,15 +133,18 @@ const sprints = [
   { num: 4, name: 'Sprint 4', dates: 'Jul 13 - Jul 26' },
   { num: 5, name: 'Sprint 5', dates: 'Jul 27 - Aug 9' },
   { num: 6, name: 'Sprint 6', dates: 'Aug 10 - Aug 23' },
+  { num: 7, name: 'Sprint 7', dates: 'Aug 24 - Sep 6' },
+  { num: 8, name: 'Sprint 8', dates: 'Sep 7 - Sep 20' }
 ];
 
 const tracks = [
   { id: 'all', name: 'Todos los Tracks' },
-  { id: 'scanner', name: 'Scanner & Core' },
-  { id: 'dilution', name: 'Dilución SEC' },
+  { id: 'analisis', name: 'Análisis' },
   { id: 'backtester', name: 'Backtester' },
-  { id: 'execution', name: 'Ejecución API' },
+  { id: 'dilution', name: 'Dilución SEC' },
   { id: 'risk', name: 'Riesgo & Portfolio' },
+  { id: 'scanner', name: 'Screener & Market' },
+  { id: 'execution', name: 'Soporte & Docs' }
 ];
 
 export function RoadmapGantt({ onBack }: { onBack: () => void }) {
@@ -255,9 +235,9 @@ export function RoadmapGantt({ onBack }: { onBack: () => void }) {
               Funcionalidad / Módulos
             </div>
             
-            <div className="grid grid-cols-6 h-full items-stretch">
+            <div className="grid h-full items-stretch" style={{ gridTemplateColumns: 'repeat(8, minmax(0, 1fr))' }}>
               {sprints.map(s => {
-                const isCurrent = s.num === 2; // Simulated current sprint is Sprint 2
+                const isCurrent = s.num === 1; // Simulated current sprint is Sprint 1
                 return (
                   <div 
                     key={s.num} 
@@ -304,21 +284,26 @@ export function RoadmapGantt({ onBack }: { onBack: () => void }) {
                         {item.title}
                       </span>
                     </div>
-                    <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-                      {item.track}
-                    </span>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+                        {item.track}
+                      </span>
+                      <span className="text-[9px] font-mono bg-dark px-1.5 py-0.5 rounded text-gray-400 border border-border">
+                        {item.phase}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Right Timeline Grid */}
-                  <div className="relative grid grid-cols-6 items-center">
+                  <div className="relative grid items-center h-full" style={{ gridTemplateColumns: 'repeat(8, minmax(0, 1fr))' }}>
                     
                     {/* Vertical background divider gridlines */}
-                    {[1, 2, 3, 4, 5, 6].map(i => (
-                      <div key={i} className="absolute top-0 bottom-0 border-r border-border/20 pointer-events-none" style={{ left: `${(i / 6) * 100}%` }}></div>
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+                      <div key={i} className="absolute top-0 bottom-0 border-r border-border/20 pointer-events-none" style={{ left: `${(i / 8) * 100}%` }}></div>
                     ))}
 
-                    {/* Today indicator vertical thin line (middle of sprint 2) */}
-                    <div className="absolute top-0 bottom-0 w-px bg-copper/30 border-dashed border-l border-copper/30 pointer-events-none" style={{ left: `${((1.5) / 6) * 100}%` }}></div>
+                    {/* Today indicator vertical thin line (middle of sprint 1) */}
+                    <div className="absolute top-0 bottom-0 w-px bg-copper/30 border-dashed border-l border-copper/30 pointer-events-none" style={{ left: `${((0.5) / 8) * 100}%` }}></div>
 
                     {/* Horizontal Gantt Bar */}
                     <div 
@@ -344,7 +329,7 @@ export function RoadmapGantt({ onBack }: { onBack: () => void }) {
                       </div>
                       
                       {/* Active glow dot */}
-                      {isCurrent && (
+                      {item.status === 'active' && (
                         <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-copper animate-ping"></div>
                       )}
                     </div>
@@ -370,6 +355,9 @@ export function RoadmapGantt({ onBack }: { onBack: () => void }) {
                       : 'bg-gray-800 text-gray-400 border border-border'
                 }`}>
                   {hoveredItem.status === 'done' ? 'Completado' : hoveredItem.status === 'active' ? 'En desarrollo' : 'Planificado'}
+                </span>
+                <span className="text-xs font-mono text-gray-500">
+                  Fase: <strong className="text-gray-400">{hoveredItem.phase}</strong>
                 </span>
                 <span className="text-xs font-mono text-gray-500">
                   Track: <strong className="text-gray-400 uppercase tracking-widest">{hoveredItem.track}</strong>
@@ -405,7 +393,7 @@ export function RoadmapGantt({ onBack }: { onBack: () => void }) {
       <footer className="border-t border-border/40 py-8 bg-darker mt-auto">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-600">
           <span>&copy; 2026 Edgecute. Todos los derechos reservados.</span>
-          <span>Actualizado hace: 2 días (Sprint 2 activo)</span>
+          <span>Actualizado hace: 1 día (Sprint 1 activo)</span>
         </div>
       </footer>
     </div>

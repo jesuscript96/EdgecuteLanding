@@ -7,11 +7,14 @@ export function Hero() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
         {/* Left Column: Copy & Form */}
         <div className="max-w-lg lg:max-w-none mx-auto lg:mx-0 lg:col-span-4">
+          <span className="text-xs font-mono text-copper uppercase tracking-widest mb-3 block">
+            Small cap intelligence. Backtesting included.
+          </span>
           <h1 className="text-4xl lg:text-5xl font-bold leading-[1.1] mb-6">
             Inteligencia y backtesting para small caps.
           </h1>
           <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-            Scanner, journal, ticker research, dilution y backtester profesional no-code. En español. Por menos de lo que pagas hoy por una sola de esas herramientas.
+            Backtestea como un quant, sin programar. Análisis de tickers, simulación histórica completa y repositorio de estrategias en español para small caps US. Todo tu flujo operativo en una sola plataforma.
           </p>
 
           {/* Claude-style Login/Signup Card */}

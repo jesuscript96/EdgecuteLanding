@@ -8,10 +8,10 @@ const pricingPlans = [
     frequency: '/mes',
     description: 'Para probar la velocidad.',
     features: [
-      '3 meses de data histórica',
-      'Journal básico',
-      'Scanner básico',
-      'Ticker research limitado'
+      { text: '3 meses de data histórica', status: 'Disponible' },
+      { text: 'Ticker research limitado', status: 'Disponible' },
+      { text: 'Journal básico', status: 'Fase 2' },
+      { text: 'Screener básico', status: 'Fase 2' }
     ],
     buttonText: 'Empezar gratis',
     buttonVariant: 'outline'
@@ -24,11 +24,11 @@ const pricingPlans = [
     subtitle: '€39/mes anual (-20%)',
     description: 'Todo lo que necesitas en el intradía.',
     features: [
-      'Journal completo',
-      'Scanner avanzado',
-      'Ticker research completo',
-      'Dilution data integrado',
-      '10 backtests/mes'
+      { text: 'Ticker research completo', status: 'Disponible' },
+      { text: '10 backtests/mes', status: 'Disponible' },
+      { text: 'Journal completo', status: 'Fase 2' },
+      { text: 'Screener avanzado', status: 'Fase 2' },
+      { text: 'Dilution data integrado', status: 'Fase 2' }
     ],
     buttonText: 'Elegir Pro',
     buttonVariant: 'copper',
@@ -42,12 +42,11 @@ const pricingPlans = [
     subtitle: '€79/mes anual (-20%)',
     description: 'El arsenal quant sin código.',
     features: [
-      'Todo lo de Pro',
-      'Backtester ilimitado',
-      'Monte Carlo',
-      'Walk-forward & out-of-sample',
-      'Look-ahead bias control',
-      'Portfolios + correlaciones'
+      { text: 'Todo lo de Pro', status: 'Disponible' },
+      { text: 'Backtester ilimitado', status: 'Disponible' },
+      { text: 'Monte Carlo Bootstrap', status: 'Fase 3' },
+      { text: 'Walk-forward & robustez', status: 'Fase 3' },
+      { text: 'Portfolios + VaR/CVaR', status: 'Fase 3' }
     ],
     buttonText: 'Elegir Elite',
     buttonVariant: 'white'
@@ -105,9 +104,20 @@ export function Pricing() {
                 <div className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Incluye:</div>
                 <ul className="space-y-4">
                   {plan.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-gray-300">
-                      <Check className="w-5 h-5 text-copper shrink-0" />
-                      <span className="text-sm leading-tight">{feat}</span>
+                    <li key={idx} className="flex items-center justify-between gap-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <Check className="w-5 h-5 text-copper shrink-0" />
+                        <span className="text-sm leading-tight">{feat.text}</span>
+                      </div>
+                      <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded shrink-0 ${
+                        feat.status === 'Disponible' 
+                          ? 'bg-green-500/10 text-green-400 border border-green-500/20' 
+                          : feat.status === 'Fase 2'
+                            ? 'bg-copper/10 text-copper border border-copper/20'
+                            : 'bg-gray-800 text-gray-400 border border-border'
+                      }`}>
+                        {feat.status}
+                      </span>
                     </li>
                   ))}
                 </ul>
