@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { LineChart, LayoutDashboard, TerminalSquare, Database, Play } from 'lucide-react';
 
-import datasetVideo from '../../assets/Edgecutedataset.webm';
-import strategyVideo from '../../assets/Edgecutestrategy.webm';
-import marketVideo from '../../assets/marketAnalysis.webm';
+import datasetVideo from '../../assets/SOLODATASETS.webm';
+import strategyVideo from '../../assets/STRATEGIESSOLO.webm';
+import marketVideo from '../../assets/tickeranalysis.webm';
 
 const tabs = [
   {

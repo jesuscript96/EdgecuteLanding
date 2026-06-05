@@ -1,5 +1,5 @@
 import { Play, Navigation, Mail } from 'lucide-react';
-import heroVideo from '../../assets/EdgecuteHero.webm';
+import heroVideo from '../../assets/backtestercompleto.webm';
 
 export function Hero() {
   return (
