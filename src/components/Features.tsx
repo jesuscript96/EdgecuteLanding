@@ -20,7 +20,7 @@ const tabs = [
     title: 'Backtesting Completo',
     subtitle: 'Simulación histórica',
     icon: LineChart,
-    content: 'Motor de simulación de alta velocidad sobre datos históricos con desglose individual de trades, configuración de variables operativas y cálculo de métricas de rendimiento clave.',
+    content: 'Motor de simulación de alta velocidad sobre datos históricos con herramientas básicas de optimización 3D, validación IS-OOS (In-Sample / Out-of-Sample), desglose de trades y métricas clave.',
     imageMock: 'chart'
   },
   {

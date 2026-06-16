@@ -1,27 +1,34 @@
-import { Play, Navigation, Mail } from 'lucide-react';
+import { Navigation } from 'lucide-react';
 import heroVideo from '../../assets/backtestercompleto.webm';
 
-export function Hero() {
+interface HeroProps {
+  onViewLogin: () => void;
+}
+
+export function Hero({ onViewLogin }: HeroProps) {
   return (
     <section className="pt-32 pb-24 px-6 min-h-[90vh] flex items-center">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
         {/* Left Column: Copy & Form */}
         <div className="max-w-lg lg:max-w-none mx-auto lg:mx-0 lg:col-span-4">
           <span className="text-xs font-mono text-copper uppercase tracking-widest mb-3 block">
-            Small cap intelligence. Backtesting included.
+            Trading sistemático para Small Caps
           </span>
           <h1 className="text-4xl lg:text-5xl font-bold leading-[1.1] mb-6">
-            Inteligencia y backtesting para small caps.
+            Trading sistemático para Small Caps.
           </h1>
           <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-            Backtestea como un quant, sin programar. Análisis de tickers, simulación histórica completa y repositorio de estrategias en español para small caps US. Todo tu flujo operativo en una sola plataforma.
+            Monitoriza, Analiza, Backtestea e Investiga tu operativa en todo el universo de Small caps. Encuentra todo tu flujo de trabajo en una sola plataforma, transforma tu operativa a un enfoque profesional de verdad.
           </p>
 
           {/* Claude-style Login/Signup Card */}
           <div className="bg-surface border border-border rounded-2xl p-6 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 copper-gradient"></div>
             
-            <button className="w-full flex items-center justify-center gap-3 bg-[#1A1A1D] border border-border hover:bg-[#232326] text-white py-3 rounded-lg font-medium transition-colors mb-5">
+            <button 
+              onClick={onViewLogin}
+              className="w-full flex items-center justify-center gap-3 bg-[#1A1A1D] border border-border hover:bg-[#232326] text-white py-3 rounded-lg font-medium transition-colors mb-5 cursor-pointer"
+            >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -41,9 +48,14 @@ export function Hero() {
               <input 
                 type="email" 
                 placeholder="tu@email.com" 
-                className="w-full bg-[#1A1A1D] border border-border rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-copper transition-colors"
+                onClick={onViewLogin}
+                readOnly
+                className="w-full bg-[#1A1A1D] border border-border rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-copper transition-colors cursor-pointer"
               />
-              <button className="w-full bg-white text-black hover:bg-gray-200 py-3 rounded-lg text-sm font-semibold transition-colors">
+              <button 
+                onClick={onViewLogin}
+                className="w-full bg-white text-black hover:bg-gray-200 py-3 rounded-lg text-sm font-semibold transition-colors cursor-pointer"
+              >
                 Crear cuenta gratis
               </button>
             </div>

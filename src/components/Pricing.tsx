@@ -53,7 +53,11 @@ const pricingPlans = [
   }
 ];
 
-export function Pricing() {
+interface PricingProps {
+  onViewLogin: () => void;
+}
+
+export function Pricing({ onViewLogin }: PricingProps) {
   return (
     <section id="pricing" className="py-24 px-6 bg-darker border-t border-border">
       <div className="max-w-7xl mx-auto">
@@ -124,7 +128,8 @@ export function Pricing() {
               </div>
 
               <button 
-                className={`w-full py-3.5 rounded-lg font-semibold transition-colors mt-auto ${
+                onClick={onViewLogin}
+                className={`w-full py-3.5 rounded-lg font-semibold transition-colors mt-auto cursor-pointer ${
                   plan.buttonVariant === 'copper' 
                     ? 'bg-copper hover:bg-[#A25215] text-white' 
                     : plan.buttonVariant === 'white'

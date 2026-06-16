@@ -1,47 +1,53 @@
-import { ArrowRight, FileText, BarChart3, ShieldCheck, PenTool, Layers, Bell, BookOpen } from 'lucide-react';
+import { ArrowRight, FileText, BarChart3, ShieldCheck, PenTool, Layers, Bell, BookOpen, Cpu } from 'lucide-react';
 
 const upcomingFeatures = [
   {
     icon: FileText,
-    title: 'Información Dilutiva',
-    description: 'Ampliación del análisis de tickers con análisis automático y resumen inteligente de información dilutiva (S-3, S-1, ATMs, warrants).',
-    tag: 'Fase 2 • SEC'
-  },
-  {
-    icon: BarChart3,
-    title: 'Market Análisis',
-    description: 'Monitoreo en tiempo real del entorno de gappers y runners, detección de simpatías de mercado (sympathy plays) y métricas complejas.',
-    tag: 'Fase 2 • Estructura'
-  },
-  {
-    icon: PenTool,
-    title: 'Journal de Álvaro',
-    description: 'Bitácora operativa automatizada diseñada por Álvaro más gestor de notas avanzado para el aprendizaje y optimización operativa.',
-    tag: 'Fase 2 • Bitácora'
+    title: 'Ampliación Dilutiva & IA',
+    description: 'Integración de herramientas de análisis de dilución y backtest por IA y en tiempo real para optimizar la toma de decisiones.',
+    tag: 'Fase 2 • Dilución & IA'
   },
   {
     icon: Bell,
-    title: 'Screener y Alertas',
-    description: 'Buscador en tiempo real con alarmas acústicas y visuales según tus presets y parámetros de estrategias individuales.',
+    title: 'Screener Personalizado',
+    description: 'Buscador en tiempo real con configuración de alarmas acústicas y visuales según tus presets y parámetros de estrategias.',
     tag: 'Fase 2 • Alertas'
   },
   {
+    icon: Layers,
+    title: 'Portfolio Manager & Modelos',
+    description: 'Integración y análisis de estrategias backtesteadas con modelos HRP, Kelly, Markov, Risk Parity, Montecarlo Bootstrap y comparativa manual vs. backtest.',
+    tag: 'Fase 2 • Portafolios'
+  },
+  {
+    icon: PenTool,
+    title: 'Journal Avanzado',
+    description: 'Bitácora operativa automatizada para registrar, clasificar y auditar tu operativa manual respecto a resultados ideales.',
+    tag: 'Fase 2 • Journal'
+  },
+  {
     icon: BookOpen,
-    title: 'Tutoriales & Soporte',
-    description: 'Portal de tutoriales prácticos guiados paso a paso y canal de soporte individualizado para dominar la plataforma al 100%.',
+    title: 'Soporte & Docs',
+    description: 'Todas y cada una de las herramientas serán tutorizadas en videos, documentación y soporte online para hacer cristalino cada concepto, modelo y procedimiento. Únete a nosotros y da un salto en tu operativa de Small Caps, profesionalízate',
     tag: 'Fase 2 • Soporte'
   },
   {
     icon: ShieldCheck,
-    title: 'Validación y Robustez',
-    description: 'Simulaciones de Montecarlo Bootstrap y validación Walk-Forward para modelar el nivel de Drawdown máximo soportable.',
-    tag: 'Fase 3 • Validación'
+    title: 'Validación & Robustez',
+    description: 'Módulo de robustez: simulaciones de Montecarlo Bootstrap, Cross Validation CPCV de López de Prado para evitar sobreajuste, pruebas de estrés Black Swan e impacto de locates.',
+    tag: 'Fase 3 • Robustez'
   },
   {
-    icon: Layers,
-    title: 'Portfolio Manager',
-    description: 'Integración de estrategias en portafolios ponderados por modelos estadísticos, analíticas VaR y CVaR, y matrices de correlación.',
-    tag: 'Fase 3 • Riesgo'
+    icon: BarChart3,
+    title: 'Market Análisis Avanzado',
+    description: 'Análisis situacional del mercado de Small Caps: ciclos, modelos autorregresivos (ARIMA, SARIMA) y modelización de sympathy plays.',
+    tag: 'Fase 4 • Market'
+  },
+  {
+    icon: Cpu,
+    title: 'Automatización Pro',
+    description: 'Integración de avisos personalizados en screeners y configuración de bots de automatización de la operativa con Das Pro.',
+    tag: 'Fase 5 • Ejecución'
   }
 ];
 
@@ -112,7 +118,7 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
                     </div>
 
                     {/* Specific Fake Content per card type */}
-                    {originalIdx === 0 && ( // Dilution
+                     {originalIdx === 0 && ( // Dilución
                       <>
                         <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
                           <span>FORM S-3 / AMENDMENT</span>
@@ -125,38 +131,7 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
                       </>
                     )}
                     
-                    {originalIdx === 1 && ( // Market Analysis
-                      <>
-                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
-                          <span>GAPPERS & RUNNERS</span>
-                          <span className="text-green-500">+142%</span>
-                        </div>
-                        <div className="h-12 bg-darker border border-border rounded p-2 flex items-center justify-between">
-                          <div className="flex flex-col gap-1 w-2/3">
-                            <div className="w-full h-1.5 bg-gray-700 rounded"></div>
-                            <div className="w-3/4 h-1.5 bg-gray-600 rounded"></div>
-                          </div>
-                          <div className="w-8 h-8 rounded-full border border-dashed border-copper/30 flex items-center justify-center text-[9px] font-mono text-copper">
-                            SYM
-                          </div>
-                        </div>
-                      </>
-                    )}
-
-                    {originalIdx === 2 && ( // Journal de Alvaro
-                      <>
-                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
-                          <span>JOURNAL LOG</span>
-                          <span className="text-gray-400">06/01</span>
-                        </div>
-                        <div className="h-12 bg-darker border border-border rounded p-2 flex flex-col gap-1">
-                          <div className="text-[9px] font-mono text-green-400">+$1,420.00 (VWAP Fade Setup)</div>
-                          <div className="w-11/12 h-1 bg-gray-700 rounded"></div>
-                        </div>
-                      </>
-                    )}
-
-                    {originalIdx === 3 && ( // Screener
+                    {originalIdx === 1 && ( // Screener
                       <>
                         <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
                           <span>LIVE SCREENER FEED</span>
@@ -172,7 +147,36 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
                       </>
                     )}
 
-                    {originalIdx === 4 && ( // Tutoriales
+                    {originalIdx === 2 && ( // Portfolio
+                      <>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>PORTFOLIO ALLOCATION</span>
+                          <span className="text-copper">VaR: 4.2%</span>
+                        </div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex gap-3 items-center">
+                          <div className="w-6 h-6 rounded-full border-2 border-copper/30 border-t-copper shrink-0 animate-spin" style={{ animationDuration: '4s' }}></div>
+                          <div className="flex flex-col gap-1 w-full">
+                            <div className="w-full h-1 bg-gray-700 rounded"></div>
+                            <div className="w-2/3 h-1 bg-gray-600 rounded"></div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+
+                    {originalIdx === 3 && ( // Journal
+                      <>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>JOURNAL LOG</span>
+                          <span className="text-gray-400">06/01</span>
+                        </div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex flex-col gap-1">
+                          <div className="text-[9px] font-mono text-green-400">+$1,420.00 (VWAP Fade Setup)</div>
+                          <div className="w-11/12 h-1 bg-gray-700 rounded"></div>
+                        </div>
+                      </>
+                    )}
+
+                    {originalIdx === 4 && ( // Soporte & Docs
                       <>
                         <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
                           <span>EDGE KNOWLEDGEBASE</span>
@@ -204,17 +208,37 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
                       </>
                     )}
 
-                    {originalIdx === 6 && ( // Portfolio
+                    {originalIdx === 6 && ( // Market Analysis
                       <>
                         <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
-                          <span>PORTFOLIO ALLOCATION</span>
-                          <span className="text-copper">VaR: 4.2%</span>
+                          <span>GAPPERS & RUNNERS</span>
+                          <span className="text-green-500">+142%</span>
                         </div>
-                        <div className="h-12 bg-darker border border-border rounded p-2 flex gap-3 items-center">
-                          <div className="w-6 h-6 rounded-full border-2 border-copper/30 border-t-copper shrink-0 animate-spin" style={{ animationDuration: '4s' }}></div>
-                          <div className="flex flex-col gap-1 w-full">
-                            <div className="w-full h-1 bg-gray-700 rounded"></div>
-                            <div className="w-2/3 h-1 bg-gray-600 rounded"></div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex items-center justify-between">
+                          <div className="flex flex-col gap-1 w-2/3">
+                            <div className="w-full h-1.5 bg-gray-700 rounded"></div>
+                            <div className="w-3/4 h-1.5 bg-gray-600 rounded"></div>
+                          </div>
+                          <div className="w-8 h-8 rounded-full border border-dashed border-copper/30 flex items-center justify-center text-[9px] font-mono text-copper">
+                            SYM
+                          </div>
+                        </div>
+                      </>
+                    )}
+
+                    {originalIdx === 7 && ( // Automatización Pro
+                      <>
+                        <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
+                          <span>DAS PRO BOT EXECUTION</span>
+                          <span className="text-copper">CONNECTED</span>
+                        </div>
+                        <div className="h-12 bg-darker border border-border rounded p-2 flex flex-col gap-1 justify-center">
+                          <div className="flex justify-between text-[9px] font-mono">
+                            <span className="text-gray-400">ROUTE: LIMIT ORDER</span>
+                            <span className="text-green-500">SENT</span>
+                          </div>
+                          <div className="w-full h-2 bg-copper/20 rounded relative overflow-hidden">
+                            <div className="absolute top-0 left-0 h-full w-4/5 bg-copper rounded"></div>
                           </div>
                         </div>
                       </>

@@ -22,12 +22,12 @@ const roadmapItems: RoadmapItem[] = [
     startSprint: 1,
     durationSprints: 1,
     status: 'done',
-    phase: 'MVP (Disponible)'
+    phase: 'Fase 1 (Disponible)'
   },
   {
     id: 'a2',
-    title: 'Ampliación Dilutiva (SEC)',
-    description: 'Análisis automático y resumen inteligente de información dilutiva (warrants, convertibles, ATMs, S-3/S-1).',
+    title: 'Ampliación Dilutiva & IA',
+    description: 'Integración de herramientas de análisis de dilución y backtest por IA y en tiempo real.',
     track: 'dilution',
     startSprint: 3,
     durationSprints: 2,
@@ -39,19 +39,19 @@ const roadmapItems: RoadmapItem[] = [
   {
     id: 'b1',
     title: 'Motor de Backtest Completo',
-    description: 'Simulación histórica con configuración de variables, desglose de trades y cálculo de métricas clave (Expectancy, Sharpe).',
+    description: 'Simulación histórica con herramientas básicas de optimización 3D y validación IS-OOS.',
     track: 'backtester',
     startSprint: 1,
     durationSprints: 2,
     status: 'done',
-    phase: 'MVP (Disponible)'
+    phase: 'Fase 1 (Disponible)'
   },
   {
     id: 'b2',
-    title: 'Robustez y Validación Avanzada',
-    description: 'Módulo de simulaciones de Montecarlo Bootstrap y validación Walk-Forward para gestionar el DD máximo soportable.',
+    title: 'Robustez y Validación',
+    description: 'Simulaciones Montecarlo Bootstrap, CPCV de López de Prado para evitar sobreajuste, pruebas de estrés (Black Swan) y coste de locates.',
     track: 'backtester',
-    startSprint: 6,
+    startSprint: 5,
     durationSprints: 2,
     status: 'planned',
     phase: 'Fase 3'
@@ -66,36 +66,36 @@ const roadmapItems: RoadmapItem[] = [
     startSprint: 1,
     durationSprints: 2,
     status: 'done',
-    phase: 'MVP (Disponible)'
+    phase: 'Fase 1 (Disponible)'
   },
   {
     id: 'r2',
-    title: 'Portfolio Manager & Ponderación',
-    description: 'Consolidación de múltiples estrategias, rebalanceo de pesos, matrices de correlación y analíticas VaR/CVaR.',
+    title: 'Portfolio Manager & Modelos',
+    description: 'Modelos HRP, Kelly, Markov, Risk Parity, Montecarlo Bootstrap, y análisis comparativo manual vs. backtest.',
     track: 'risk',
-    startSprint: 7,
+    startSprint: 4,
     durationSprints: 2,
     status: 'planned',
-    phase: 'Fase 3'
+    phase: 'Fase 2'
   },
 
   // Track 4: Screener & Market
   {
     id: 's1',
-    title: 'Market Análisis (Gappers/Runners)',
-    description: 'Detección y control de gappers y runners, simpatías de mercado (sympathy plays) y analíticas complejas.',
+    title: 'Market Análisis Avanzado',
+    description: 'Situación actual de mercado de Small Caps: ciclos, modelos ARIMA/SARIMA, y modelización de sympathy plays.',
     track: 'scanner',
-    startSprint: 3,
+    startSprint: 6,
     durationSprints: 2,
     status: 'planned',
-    phase: 'Fase 2'
+    phase: 'Fase 4'
   },
   {
     id: 's2',
-    title: 'Screener y Alertas Live',
-    description: 'Buscador en tiempo real con alarmas acústicas y visuales según tus presets y parámetros de estrategias individuales.',
+    title: 'Screener Personalizado',
+    description: 'Buscador en tiempo real con configuración de alarmas acústicas y visuales según presets y parámetros de estrategias.',
     track: 'scanner',
-    startSprint: 4,
+    startSprint: 3,
     durationSprints: 2,
     status: 'planned',
     phase: 'Fase 2'
@@ -104,11 +104,11 @@ const roadmapItems: RoadmapItem[] = [
   // Track 5: Journal & Notas
   {
     id: 'j1',
-    title: 'Journal de Álvaro + Notas',
-    description: 'Bitácora automatizada de operaciones según el diseño de Álvaro y gestor de notas estructuradas para el aprendizaje.',
+    title: 'Journal Avanzado',
+    description: 'Bitácora operativa automatizada para registrar, clasificar y auditar tu operativa manual respecto a resultados ideales.',
     track: 'scanner',
     startSprint: 4,
-    durationSprints: 2,
+    durationSprints: 1,
     status: 'planned',
     phase: 'Fase 2'
   },
@@ -116,13 +116,25 @@ const roadmapItems: RoadmapItem[] = [
   // Track 6: Soporte & Docs
   {
     id: 'e1',
-    title: 'Tutoriales & Soporte Personalizado',
-    description: 'Portal de tutoriales prácticos guiados paso a paso y canal de soporte individualizado para dominar la plataforma.',
+    title: 'Soporte & Docs',
+    description: 'Tutorización de herramientas en videos, documentación y soporte online.',
     track: 'execution',
     startSprint: 5,
     durationSprints: 1,
     status: 'planned',
     phase: 'Fase 2'
+  },
+
+  // Track 7: Automatización Pro
+  {
+    id: 'bot1',
+    title: 'Automatización Das Pro',
+    description: 'Integración de avisos personalizados en screeners y configuración de bot de automatización de la operativa con Das Pro.',
+    track: 'scanner',
+    startSprint: 7,
+    durationSprints: 2,
+    status: 'planned',
+    phase: 'Fase 5'
   }
 ];
 
