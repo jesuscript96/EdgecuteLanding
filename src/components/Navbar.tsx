@@ -23,12 +23,18 @@ export function Navbar({ onViewLanding, onViewRoadmap, onViewLogin, isLoggedIn, 
           onClick={onViewLanding}
           className="flex items-center gap-2 cursor-pointer select-none group"
         >
-          {/* Logo with slanted 'E' vibe */}
-          <div className="w-8 h-8 bg-copper text-white flex items-center justify-center font-mono font-bold leading-none transform -skew-x-12 group-hover:scale-105 transition-transform">
-            E
-          </div>
-          <span className="font-mono font-bold text-xl tracking-tighter text-white">
-            EDGECUTE
+          {/* Isotipo SVG */}
+          <svg 
+            viewBox="0 0 90 90" 
+            className="w-8 h-8 flex-shrink-0 group-hover:scale-105 transition-transform"
+          >
+            <rect x="0" y="0" width="90" height="90" rx="8" fill="#D87A3D" />
+            <rect x="20" y="18" width="52" height="10" fill="#16181A" />
+            <rect x="20" y="40" width="38" height="10" fill="#16181A" />
+            <rect x="20" y="62" width="52" height="10" fill="#16181A" />
+          </svg>
+          <span className="brand-wordmark">
+            Edgecute
           </span>
         </div>
         

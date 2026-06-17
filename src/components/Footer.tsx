@@ -3,11 +3,21 @@ export function Footer() {
     <footer className="bg-dark border-t border-border py-12 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-           <div className="w-6 h-6 bg-border text-gray-400 flex items-center justify-center font-mono font-bold text-xs transform -skew-x-12">
-            E
-          </div>
-          <span className="font-mono text-sm tracking-tighter text-gray-500">
-            EDGECUTE © 2026
+          {/* Isotipo SVG */}
+          <svg 
+            viewBox="0 0 90 90" 
+            className="w-6 h-6 flex-shrink-0"
+          >
+            <rect x="0" y="0" width="90" height="90" rx="8" fill="#D87A3D" />
+            <rect x="20" y="18" width="52" height="10" fill="#16181A" />
+            <rect x="20" y="40" width="38" height="10" fill="#16181A" />
+            <rect x="20" y="62" width="52" height="10" fill="#16181A" />
+          </svg>
+          <span className="brand-wordmark opacity-60">
+            Edgecute
+          </span>
+          <span className="text-xs font-mono text-gray-600 ml-1">
+            © 2026
           </span>
         </div>
         
