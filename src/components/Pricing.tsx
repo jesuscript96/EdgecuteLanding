@@ -8,10 +8,9 @@ const pricingPlans = [
     frequency: '/mes',
     description: 'Para probar la velocidad.',
     features: [
-      { text: '3 meses de data histórica', status: 'Disponible' },
-      { text: 'Ticker research limitado', status: 'Disponible' },
-      { text: 'Journal básico', status: 'Fase 2' },
-      { text: 'Screener básico', status: 'Fase 2' }
+      { text: 'Backtester', status: 'Bloqueado' },
+      { text: 'Trunk', status: 'Bloqueado' },
+      { text: 'Ticker analysis con IA (5 mensajes)', status: 'Disponible' }
     ],
     buttonText: 'Empezar gratis',
     buttonVariant: 'outline'
@@ -19,16 +18,14 @@ const pricingPlans = [
   {
     name: 'Pro',
     target: 'La Sombra',
-    price: '€49',
+    price: '€98',
     frequency: '/mes',
-    subtitle: '€39/mes anual (-20%)',
+    subtitle: '€78/mes anual (-20%)',
     description: 'Todo lo que necesitas en el intradía.',
     features: [
-      { text: 'Ticker research completo', status: 'Disponible' },
-      { text: '10 backtests/mes', status: 'Disponible' },
-      { text: 'Journal completo', status: 'Fase 2' },
-      { text: 'Screener avanzado', status: 'Fase 2' },
-      { text: 'Dilution data integrado', status: 'Fase 2' }
+      { text: 'Backtester con data limitada (hot storage)', status: 'Disponible' },
+      { text: 'Trunk', status: 'Bloqueado' },
+      { text: 'Ticker analysis con IA ilimitado', status: 'Disponible' }
     ],
     buttonText: 'Elegir Pro',
     buttonVariant: 'copper',
@@ -37,16 +34,15 @@ const pricingPlans = [
   {
     name: 'Elite',
     target: 'El Cazador',
-    price: '€99',
+    price: '€198',
     frequency: '/mes',
-    subtitle: '€79/mes anual (-20%)',
+    subtitle: '€158/mes anual (-20%)',
     description: 'El arsenal quant sin código.',
     features: [
-      { text: 'Todo lo de Pro', status: 'Disponible' },
-      { text: 'Backtester ilimitado', status: 'Disponible' },
-      { text: 'Monte Carlo Bootstrap', status: 'Fase 3' },
-      { text: 'Walk-forward & robustez', status: 'Fase 3' },
-      { text: 'Portfolios + VaR/CVaR', status: 'Fase 3' }
+      { text: 'Backtester ilimitado (toda la data)', status: 'Disponible' },
+      { text: 'Trunk ilimitado', status: 'Disponible' },
+      { text: 'Ticker analysis con IA ilimitado', status: 'Disponible' },
+      { text: 'Todo ilimitado', status: 'Disponible' }
     ],
     buttonText: 'Elegir Elite',
     buttonVariant: 'white'
@@ -114,11 +110,13 @@ export function Pricing({ onViewLogin }: PricingProps) {
                         <span className="text-sm leading-tight">{feat.text}</span>
                       </div>
                       <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded shrink-0 ${
-                        feat.status === 'Disponible' 
-                          ? 'bg-green-500/10 text-green-400 border border-green-500/20' 
-                          : feat.status === 'Fase 2'
-                            ? 'bg-copper/10 text-copper border border-copper/20'
-                            : 'bg-gray-800 text-gray-400 border border-border'
+                        feat.status === 'Disponible'
+                          ? 'bg-green-500/10 text-green-400 border border-green-500/20'
+                          : feat.status === 'Bloqueado'
+                            ? 'bg-red-500/10 text-red-400 border border-red-500/20'
+                            : feat.status === 'Fase 2'
+                              ? 'bg-copper/10 text-copper border border-copper/20'
+                              : 'bg-gray-800 text-gray-400 border border-border'
                       }`}>
                         {feat.status}
                       </span>

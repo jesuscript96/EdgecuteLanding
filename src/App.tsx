@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
+import { EdgieAssistant } from './components/EdgieAssistant';
 import { ComingSoon } from './components/ComingSoon';
 import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
@@ -61,6 +62,7 @@ export default function App() {
       <main className="flex-1 flex flex-col">
         <Hero onViewLogin={() => setView('login')} />
         <Features />
+        <EdgieAssistant />
         <ComingSoon onViewRoadmap={() => setView('roadmap')} />
         <Pricing onViewLogin={() => setView('login')} />
       </main>
