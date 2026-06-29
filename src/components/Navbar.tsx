@@ -40,6 +40,7 @@ export function Navbar({ onViewLanding, onViewRoadmap, onViewLogin, isLoggedIn, 
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium font-mono text-gray-400">
           <a href="#features" className="hover:text-copper transition-colors">/features</a>
+          <a href="#backtester" className="hover:text-copper transition-colors">/backtester</a>
           <a 
             href="#roadmap" 
             onClick={(e) => {

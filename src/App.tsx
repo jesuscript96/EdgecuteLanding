@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
 import { EdgieAssistant } from './components/EdgieAssistant';
+import { Backtester } from './components/Backtester';
 import { ComingSoon } from './components/ComingSoon';
 import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
@@ -52,6 +53,7 @@ export default function App() {
         <Hero onViewLogin={handleLoginRedirect} />
         <Features />
         <EdgieAssistant />
+        <Backtester />
         <ComingSoon onViewRoadmap={() => setView('roadmap')} />
         <Pricing onViewLogin={handleLoginRedirect} />
       </main>
