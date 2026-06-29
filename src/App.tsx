@@ -16,7 +16,7 @@ interface LoginUser {
 }
 
 export default function App() {
-  const [view, setView] = useState<'landing' | 'roadmap' | 'login'>('landing');
+  const [view, setView] = useState<'landing' | 'roadmap'>('landing');
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<LoginUser | null>(null);
 
@@ -25,10 +25,8 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [view]);
 
-  const handleLoginSuccess = (userData: LoginUser) => {
-    setUser(userData);
-    setIsLoggedIn(true);
-    setView('landing');
+  const handleLoginRedirect = () => {
+    window.location.href = 'https://app.edgecute.com';
   };
 
   const handleLogout = () => {
@@ -40,31 +38,22 @@ export default function App() {
     return <RoadmapGantt onBack={() => setView('landing')} />;
   }
 
-  if (view === 'login') {
-    return (
-      <Login 
-        onBack={() => setView('landing')} 
-        onLoginSuccess={handleLoginSuccess}
-      />
-    );
-  }
-
   return (
     <div className="min-h-screen bg-dark flex flex-col">
       <Navbar 
         onViewLanding={() => setView('landing')}
         onViewRoadmap={() => setView('roadmap')} 
-        onViewLogin={() => setView('login')}
+        onViewLogin={handleLoginRedirect}
         isLoggedIn={isLoggedIn}
         user={user}
         onLogout={handleLogout}
       />
       <main className="flex-1 flex flex-col">
-        <Hero onViewLogin={() => setView('login')} />
+        <Hero onViewLogin={handleLoginRedirect} />
         <Features />
         <EdgieAssistant />
         <ComingSoon onViewRoadmap={() => setView('roadmap')} />
-        <Pricing onViewLogin={() => setView('login')} />
+        <Pricing onViewLogin={handleLoginRedirect} />
       </main>
       <Footer />
     </div>
