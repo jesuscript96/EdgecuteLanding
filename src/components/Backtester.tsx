@@ -137,8 +137,8 @@ export function Backtester() {
           })}
         </div>
 
-        {/* Panel de Contenido con Transición (AnimatePresence) */}
-        <div className="relative bg-surface rounded-2xl overflow-hidden min-h-[580px] lg:min-h-0 lg:h-[500px] flex items-stretch shadow-2xl border border-border">
+        {/* Panel de Contenido con Transición (AnimatePresence) - Diseño Bento adaptado de Edgie */}
+        <div className="relative bg-surface rounded-[2.5rem] overflow-hidden min-h-[760px] lg:min-h-0 lg:h-[480px] flex flex-col lg:flex-row items-stretch shadow-2xl border border-border">
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div
               key={activeIndex}
@@ -149,7 +149,7 @@ export function Backtester() {
               className="absolute inset-0 flex flex-col lg:flex-row w-full h-full"
             >
               {/* Lado Izquierdo: Textos */}
-              <div className="w-full lg:w-5/12 p-8 md:p-12 flex flex-col justify-center z-20 bg-surface relative">
+              <div className="w-full lg:w-5/12 p-8 md:p-12 lg:p-14 flex flex-col justify-center z-20 bg-surface relative">
                 {/* Ambient background glow inside text box */}
                 <div className="absolute -top-24 -left-24 w-80 h-80 bg-copper/5 rounded-full blur-[80px] pointer-events-none" />
 
@@ -179,38 +179,20 @@ export function Backtester() {
                 </motion.div>
               </div>
 
-              {/* Lado Derecho: Contenido Multimedia (Video en Ventana Navegador Mock) */}
-              <div className="w-full lg:w-7/12 p-6 md:p-8 flex items-center justify-center bg-[#08080A] border-t lg:border-t-0 lg:border-l border-border relative z-10 min-h-[250px] lg:min-h-0">
-                <div className="w-full max-w-2xl relative rounded-xl border border-border bg-darker shadow-2xl overflow-hidden aspect-[1034/480]">
-                  {/* Browser/Window Header Bar */}
-                  <div className="h-8 border-b border-border bg-[#121214] flex items-center px-4 gap-4">
-                     <div className="flex gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80"></div>
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80"></div>
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80"></div>
-                     </div>
-                     <div className="h-4 w-px bg-border"></div>
-                     <div className="font-mono text-[9px] text-gray-500 uppercase tracking-widest">
-                       workspace • {activeItem.slug}
-                     </div>
-                  </div>
-                  
-                  {/* Video Player */}
-                  <div className="relative w-full h-[calc(100%-32px)] bg-darker flex items-center justify-center">
-                    <motion.video
-                      key={`video-${activeIndex}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                      src={activeItem.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
+              {/* Lado Derecho: Contenido Multimedia (Mismo estilo que Edgie video background card) */}
+              <div className="w-full lg:w-7/12 min-h-[380px] lg:min-h-full relative bg-darker overflow-hidden border-t lg:border-t-0 lg:border-l border-border z-10">
+                <motion.video
+                  key={`video-${activeIndex}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  src={activeItem.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.02]"
+                />
               </div>
             </motion.div>
           </AnimatePresence>
