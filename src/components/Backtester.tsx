@@ -138,18 +138,18 @@ export function Backtester() {
         </div>
 
         {/* Panel de Contenido con Transición (AnimatePresence) */}
-        <div className="relative bg-surface rounded-2xl overflow-hidden h-[600px] lg:h-[650px] flex items-center shadow-2xl border border-border">
+        <div className="relative bg-surface rounded-2xl overflow-hidden min-h-[580px] lg:min-h-0 lg:h-[500px] flex items-stretch shadow-2xl border border-border">
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div
               key={activeIndex}
-              initial={{ opacity: 0, y: 30, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -30, scale: 1.02 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} // EaseOutExpo
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 flex flex-col lg:flex-row w-full h-full"
             >
               {/* Lado Izquierdo: Textos */}
-              <div className="w-full lg:w-5/12 p-8 md:p-16 flex flex-col justify-center z-20 bg-gradient-to-r from-surface via-surface/95 to-transparent lg:bg-surface relative">
+              <div className="w-full lg:w-5/12 p-8 md:p-12 flex flex-col justify-center z-20 bg-surface relative">
                 {/* Ambient background glow inside text box */}
                 <div className="absolute -top-24 -left-24 w-80 h-80 bg-copper/5 rounded-full blur-[80px] pointer-events-none" />
 
@@ -162,10 +162,10 @@ export function Backtester() {
                   <span className="text-copper font-mono text-xs tracking-widest uppercase mb-4 block">
                     {activeItem.index} — {activeItem.name}
                   </span>
-                  <h3 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold text-white tracking-tight leading-[1.1] mb-6 text-balance">
+                  <h3 className="text-3xl md:text-4xl lg:text-[2.25rem] font-bold text-white tracking-tight leading-[1.1] mb-6 text-balance">
                     {activeItem.tagline}
                   </h3>
-                  <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-10 max-w-md">
+                  <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-8 max-w-md">
                     {activeItem.intro}
                   </p>
 
@@ -179,25 +179,37 @@ export function Backtester() {
                 </motion.div>
               </div>
 
-              {/* Lado Derecho: Contenido Multimedia (Video) */}
-              <div className="absolute lg:relative inset-0 lg:inset-auto lg:w-7/12 h-full z-10 flex items-center justify-center bg-[#050505]">
-                {/* Degradado oscuro para móviles (asegura legibilidad del texto superior) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent lg:hidden z-20" />
-                
-                <div className="w-full h-full relative overflow-hidden flex items-center justify-center">
-                  {/* Reproductor de Video */}
-                  <motion.video
-                    key={`video-${activeIndex}`}
-                    initial={{ scale: 1.05, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.6 }}
-                    src={activeItem.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover object-center opacity-65 lg:opacity-100"
-                  />
+              {/* Lado Derecho: Contenido Multimedia (Video en Ventana Navegador Mock) */}
+              <div className="w-full lg:w-7/12 p-6 md:p-8 flex items-center justify-center bg-[#08080A] border-t lg:border-t-0 lg:border-l border-border relative z-10 min-h-[250px] lg:min-h-0">
+                <div className="w-full max-w-2xl relative rounded-xl border border-border bg-darker shadow-2xl overflow-hidden aspect-[1034/480]">
+                  {/* Browser/Window Header Bar */}
+                  <div className="h-8 border-b border-border bg-[#121214] flex items-center px-4 gap-4">
+                     <div className="flex gap-1.5">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80"></div>
+                     </div>
+                     <div className="h-4 w-px bg-border"></div>
+                     <div className="font-mono text-[9px] text-gray-500 uppercase tracking-widest">
+                       workspace • {activeItem.slug}
+                     </div>
+                  </div>
+                  
+                  {/* Video Player */}
+                  <div className="relative w-full h-[calc(100%-32px)] bg-darker flex items-center justify-center">
+                    <motion.video
+                      key={`video-${activeIndex}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      src={activeItem.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             </motion.div>
