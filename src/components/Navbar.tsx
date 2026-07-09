@@ -51,7 +51,6 @@ export function Navbar({ onViewLanding, onViewRoadmap, onOpenWaitlist, isLoggedI
           >
             /roadmap
           </a>
-          <a href="#pricing" className="hover:text-copper transition-colors">/pricing</a>
         </div>
 
 

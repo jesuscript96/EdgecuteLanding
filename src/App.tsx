@@ -5,7 +5,6 @@ import { Features } from './components/Features';
 import { EdgieAssistant } from './components/EdgieAssistant';
 import { Backtester } from './components/Backtester';
 import { ComingSoon } from './components/ComingSoon';
-import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
 import { RoadmapGantt } from './components/RoadmapGantt';
 import { WaitlistModal } from './components/WaitlistModal';
@@ -55,7 +54,6 @@ export default function App() {
         <Backtester onOpenWaitlist={openWaitlist} />
         <Features />
         <ComingSoon onViewRoadmap={() => setView('roadmap')} />
-        <Pricing onOpenWaitlist={openWaitlist} />
       </main>
       <Footer />
     </div>

@@ -15,7 +15,6 @@ export interface TabItem {
   tagline: string;
   intro: string;
   video: string;
-  link: string;
 }
 
 const items: TabItem[] = [
@@ -25,8 +24,7 @@ const items: TabItem[] = [
     name: 'Estrategias sin código (Wizard)',
     tagline: 'Aprende y crea desde el primer segundo.',
     intro: 'La forma más intuitiva de operar. Diseña, edita y prueba tus setups en un asistente visual paso a paso sin escribir una sola línea de código.',
-    video: backtesterWizard,
-    link: '#pricing'
+    video: backtesterWizard
   },
   {
     slug: 'equity',
@@ -34,8 +32,7 @@ const items: TabItem[] = [
     name: 'Curva de capital y estadísticas',
     tagline: 'Métricas cuantitativas e institucionales al detalle.',
     intro: 'Analiza el desglose completo de tu operativa: curva de equity, drawdown máximo histórico, profit factor, ratio de Sharpe y un diario detallado con cada operación simulada.',
-    video: backtesterEquity,
-    link: '#pricing'
+    video: backtesterEquity
   },
   {
     slug: 'opt1',
@@ -43,8 +40,7 @@ const items: TabItem[] = [
     name: 'Optimización de Parámetros',
     tagline: 'Encuentra la configuración ideal automáticamente.',
     intro: 'Somete tu estrategia a cientos de combinaciones simultáneas. Ajusta de forma inteligente tus stop loss, target prices e indicadores técnicos en segundos para maximizar el rendimiento.',
-    video: backtesterOptimization1,
-    link: '#pricing'
+    video: backtesterOptimization1
   },
   {
     slug: 'opt2',
@@ -52,8 +48,7 @@ const items: TabItem[] = [
     name: 'Espacio de Robustez 3D',
     tagline: 'Visualización en tres dimensiones contra el overfitting.',
     intro: 'No te dejes engañar por una simulación demasiado optimizada. Visualiza la estabilidad de tus parámetros en un espacio 3D interactivo para garantizar que tu ventaja sea real y duradera.',
-    video: backtesterOptimization23d,
-    link: '#pricing'
+    video: backtesterOptimization23d
   }
 ];
 
