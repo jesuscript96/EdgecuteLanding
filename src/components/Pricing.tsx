@@ -50,10 +50,10 @@ const pricingPlans = [
 ];
 
 interface PricingProps {
-  onViewLogin: () => void;
+  onOpenWaitlist: () => void;
 }
 
-export function Pricing({ onViewLogin }: PricingProps) {
+export function Pricing({ onOpenWaitlist }: PricingProps) {
   return (
     <section id="pricing" className="py-24 px-6 bg-darker border-t border-border">
       <div className="max-w-7xl mx-auto">
@@ -125,11 +125,11 @@ export function Pricing({ onViewLogin }: PricingProps) {
                 </ul>
               </div>
 
-              <button 
-                onClick={onViewLogin}
+              <button
+                onClick={onOpenWaitlist}
                 className={`w-full py-3.5 rounded-lg font-semibold transition-colors mt-auto cursor-pointer ${
-                  plan.buttonVariant === 'copper' 
-                    ? 'bg-copper hover:bg-[#A25215] text-white' 
+                  plan.buttonVariant === 'copper'
+                    ? 'bg-copper hover:bg-[#A25215] text-white'
                     : plan.buttonVariant === 'white'
                       ? 'bg-white hover:bg-gray-200 text-black'
                       : 'bg-transparent border border-border hover:bg-border text-white'

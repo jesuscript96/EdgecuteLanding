@@ -39,7 +39,7 @@ function EdgieLogo({ className = "w-8 h-8" }: { className?: string }) {
   );
 }
 
-export function EdgieAssistant() {
+export function EdgieAssistant({ onOpenWaitlist }: { onOpenWaitlist: () => void }) {
   const [isMuted, setIsMuted] = useState(false);
 
   return (
@@ -263,6 +263,21 @@ export function EdgieAssistant() {
           </motion.div>
 
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center"
+        >
+          <button
+            onClick={onOpenWaitlist}
+            className="bg-copper hover:bg-[#A25215] text-white px-8 py-4 rounded-xl text-base font-bold transition-all cursor-pointer shadow-[0_4px_24px_rgba(201,105,31,0.25)] hover:shadow-[0_6px_32px_rgba(201,105,31,0.4)]"
+          >
+            Solicitar acceso a la beta
+          </button>
+        </motion.div>
       </div>
     </section>
   );

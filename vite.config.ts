@@ -2,10 +2,11 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
+import {waitlistPlugin} from './vite-api-middleware';
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), waitlistPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

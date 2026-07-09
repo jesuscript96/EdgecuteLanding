@@ -9,13 +9,13 @@ interface LoginUser {
 interface NavbarProps {
   onViewLanding: () => void;
   onViewRoadmap: () => void;
-  onViewLogin: () => void;
+  onOpenWaitlist: () => void;
   isLoggedIn: boolean;
   user: LoginUser | null;
   onLogout: () => void;
 }
 
-export function Navbar({ onViewLanding, onViewRoadmap, onViewLogin, isLoggedIn, user, onLogout }: NavbarProps) {
+export function Navbar({ onViewLanding, onViewRoadmap, onOpenWaitlist, isLoggedIn, user, onLogout }: NavbarProps) {
   return (
     <nav className="fixed top-0 w-full z-50 bg-dark/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -78,17 +78,17 @@ export function Navbar({ onViewLanding, onViewRoadmap, onViewLogin, isLoggedIn, 
             </div>
           ) : (
             <>
-              <button 
-                onClick={onViewLogin}
+              <button
+                onClick={onOpenWaitlist}
                 className="hidden md:block text-sm font-medium text-gray-300 hover:text-white transition-colors cursor-pointer"
               >
                 Login
               </button>
-              <button 
-                onClick={onViewLogin}
+              <button
+                onClick={onOpenWaitlist}
                 className="bg-white text-black hover:bg-gray-200 px-4 py-2 rounded-md text-sm font-semibold transition-colors cursor-pointer"
               >
-                Start Free Trial
+                Acceso anticipado
               </button>
             </>
           )}

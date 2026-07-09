@@ -57,7 +57,7 @@ const items: TabItem[] = [
   }
 ];
 
-export function Backtester() {
+export function Backtester({ onOpenWaitlist }: { onOpenWaitlist: () => void }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -169,13 +169,13 @@ export function Backtester() {
                     {activeItem.intro}
                   </p>
 
-                  <a
-                    href={activeItem.link}
+                  <button
+                    onClick={onOpenWaitlist}
                     className="inline-flex items-center gap-2 text-white font-semibold hover:text-copper transition-colors group text-sm uppercase tracking-wider font-mono cursor-pointer"
                   >
                     Probar ahora
                     <ArrowRight className="w-4 h-4 text-copper group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  </button>
                 </motion.div>
               </div>
 

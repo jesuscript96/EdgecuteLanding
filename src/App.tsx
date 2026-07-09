@@ -8,7 +8,7 @@ import { ComingSoon } from './components/ComingSoon';
 import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
 import { RoadmapGantt } from './components/RoadmapGantt';
-import { Login } from './components/Login';
+import { WaitlistModal } from './components/WaitlistModal';
 
 interface LoginUser {
   name: string;
@@ -20,20 +20,19 @@ export default function App() {
   const [view, setView] = useState<'landing' | 'roadmap'>('landing');
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<LoginUser | null>(null);
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
 
-  // Scroll to top when switching views
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [view]);
-
-  const handleLoginRedirect = () => {
-    window.location.href = 'https://app.edgecute.com';
-  };
 
   const handleLogout = () => {
     setUser(null);
     setIsLoggedIn(false);
   };
+
+  const openWaitlist = () => setWaitlistOpen(true);
+  const closeWaitlist = () => setWaitlistOpen(false);
 
   if (view === 'roadmap') {
     return <RoadmapGantt onBack={() => setView('landing')} />;
@@ -41,24 +40,24 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-dark flex flex-col">
-      <Navbar 
+      <WaitlistModal isOpen={waitlistOpen} onClose={closeWaitlist} />
+      <Navbar
         onViewLanding={() => setView('landing')}
-        onViewRoadmap={() => setView('roadmap')} 
-        onViewLogin={handleLoginRedirect}
+        onViewRoadmap={() => setView('roadmap')}
+        onOpenWaitlist={openWaitlist}
         isLoggedIn={isLoggedIn}
         user={user}
         onLogout={handleLogout}
       />
       <main className="flex-1 flex flex-col">
-        <Hero onViewLogin={handleLoginRedirect} />
+        <Hero onOpenWaitlist={openWaitlist} />
+        <EdgieAssistant onOpenWaitlist={openWaitlist} />
+        <Backtester onOpenWaitlist={openWaitlist} />
         <Features />
-        <EdgieAssistant />
-        <Backtester />
         <ComingSoon onViewRoadmap={() => setView('roadmap')} />
-        <Pricing onViewLogin={handleLoginRedirect} />
+        <Pricing onOpenWaitlist={openWaitlist} />
       </main>
       <Footer />
     </div>
   );
 }
-
