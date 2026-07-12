@@ -15,7 +15,7 @@ export function Hero({ onOpenWaitlist }: HeroProps) {
             Asistente de Trading · Scanner · Backtester
           </span>
           <h1 className="text-4xl lg:text-5xl font-bold leading-[1.1] mb-6">
-            El asistente para trading en small caps, con scanner profesional y backtester sin código.
+            El asistente para trading en small caps.
           </h1>
           <p className="text-lg text-gray-400 mb-8 leading-relaxed">
             Un asistente pensado para traders de small caps, con un scanner profesional para encontrar tus próximas oportunidades y un backtester sin código para que los sistemáticos validen sus estrategias sin escribir una línea. Todo en una sola plataforma.
