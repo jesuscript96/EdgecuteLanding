@@ -79,7 +79,7 @@ const roadmapItems: RoadmapItem[] = [
     phase: 'Fase 2'
   },
 
-  // Track 4: Screener & Market
+  // Track 4: Scanner & Market
   {
     id: 's1',
     title: 'Market Análisis Avanzado',
@@ -92,7 +92,7 @@ const roadmapItems: RoadmapItem[] = [
   },
   {
     id: 's2',
-    title: 'Screener Personalizado',
+    title: 'Scanner Personalizado',
     description: 'Buscador en tiempo real con configuración de alarmas acústicas y visuales según presets y parámetros de estrategias.',
     track: 'scanner',
     startSprint: 3,
@@ -129,7 +129,7 @@ const roadmapItems: RoadmapItem[] = [
   {
     id: 'bot1',
     title: 'Automatización Das Pro',
-    description: 'Integración de avisos personalizados en screeners y configuración de bot de automatización de la operativa con Das Pro.',
+    description: 'Integración de avisos personalizados en scanners y configuración de bot de automatización de la operativa con Das Pro.',
     track: 'scanner',
     startSprint: 7,
     durationSprints: 2,
@@ -155,7 +155,7 @@ const tracks = [
   { id: 'backtester', name: 'Backtester' },
   { id: 'dilution', name: 'Dilución SEC' },
   { id: 'risk', name: 'Riesgo & Portfolio' },
-  { id: 'scanner', name: 'Screener & Market' },
+  { id: 'scanner', name: 'Scanner & Market' },
   { id: 'execution', name: 'Soporte & Docs' }
 ];
 

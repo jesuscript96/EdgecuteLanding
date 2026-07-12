@@ -12,13 +12,13 @@ export function Hero({ onOpenWaitlist }: HeroProps) {
         {/* Left Column: Copy & Form */}
         <div className="max-w-lg lg:max-w-none mx-auto lg:mx-0 lg:col-span-4">
           <span className="text-xs font-mono text-copper uppercase tracking-widest mb-3 block">
-            Monitoreo en tiempo real · IA · Backtesting
+            Asistente de Trading · Scanner · Backtester
           </span>
           <h1 className="text-4xl lg:text-5xl font-bold leading-[1.1] mb-6">
-            Monitoriza el mercado en tiempo real, con estadísticas y asistencia de IA.
+            El asistente para trading en small caps, con scanner profesional y backtester sin código.
           </h1>
           <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-            Sigue tickers al instante, consulta estadísticas de mercado en tiempo real, recibe asistencia de IA para tus decisiones y pon a prueba tus hipótesis con un backtester sin código. Todo en una sola plataforma.
+            Un asistente pensado para traders de small caps, con un scanner profesional para encontrar tus próximas oportunidades y un backtester sin código para que los sistemáticos validen sus estrategias sin escribir una línea. Todo en una sola plataforma.
           </p>
 
           {/* Claude-style Login/Signup Card */}
@@ -61,7 +61,7 @@ export function Hero({ onOpenWaitlist }: HeroProps) {
             </div>
             
             <p className="text-[11px] text-gray-500 mt-5 text-center">
-              Beta privada — Acceso personal bajo solicitud.
+              Beta privada: acceso personal bajo solicitud.
             </p>
           </div>
         </div>

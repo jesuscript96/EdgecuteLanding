@@ -9,7 +9,7 @@ const upcomingFeatures = [
   },
   {
     icon: Bell,
-    title: 'Screener Personalizado',
+    title: 'Scanner Personalizado',
     description: 'Buscador en tiempo real con configuración de alarmas acústicas y visuales según tus presets y parámetros de estrategias.',
     tag: 'Fase 2 • Alertas'
   },
@@ -46,7 +46,7 @@ const upcomingFeatures = [
   {
     icon: Cpu,
     title: 'Automatización Pro',
-    description: 'Integración de avisos personalizados en screeners y configuración de bots de automatización de la operativa con Das Pro.',
+    description: 'Integración de avisos personalizados en scanners y configuración de bots de automatización de la operativa con Das Pro.',
     tag: 'Fase 5 • Ejecución'
   }
 ];
@@ -131,10 +131,10 @@ export function ComingSoon({ onViewRoadmap }: ComingSoonProps) {
                       </>
                     )}
                     
-                    {originalIdx === 1 && ( // Screener
+                    {originalIdx === 1 && ( // Scanner
                       <>
                         <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1">
-                          <span>LIVE SCREENER FEED</span>
+                          <span>LIVE SCANNER FEED</span>
                           <span className="text-red-500 animate-pulse">ALERT</span>
                         </div>
                         <div className="h-12 bg-red-950/20 border border-red-500/20 rounded p-2 flex items-center gap-2">

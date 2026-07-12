@@ -155,7 +155,7 @@ export function Backtester({ onOpenWaitlist }: { onOpenWaitlist: () => void }) {
                   className="relative z-10"
                 >
                   <span className="text-copper font-mono text-xs tracking-widest uppercase mb-4 block">
-                    {activeItem.index} — {activeItem.name}
+                    {activeItem.index} · {activeItem.name}
                   </span>
                   <h3 className="text-3xl md:text-4xl lg:text-[2.25rem] font-bold text-white tracking-tight leading-[1.1] mb-6 text-balance">
                     {activeItem.tagline}
