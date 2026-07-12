@@ -97,7 +97,7 @@ export function Backtester({ onOpenWaitlist }: { onOpenWaitlist: () => void }) {
             / EL MOTOR DE SIMULACIÓN
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] text-balance">
-            El Backtester Sin Código Más Rápido del Mercado
+            El Backtester Sin Código para Sistemáticos de Small Caps
           </h2>
         </div>
 

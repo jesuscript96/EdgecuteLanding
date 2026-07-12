@@ -7,26 +7,21 @@ interface LoginUser {
 }
 
 interface NavbarProps {
-  onViewLanding: () => void;
-  onViewRoadmap: () => void;
   onOpenWaitlist: () => void;
   isLoggedIn: boolean;
   user: LoginUser | null;
   onLogout: () => void;
 }
 
-export function Navbar({ onViewLanding, onViewRoadmap, onOpenWaitlist, isLoggedIn, user, onLogout }: NavbarProps) {
+export function Navbar({ onOpenWaitlist, isLoggedIn, user, onLogout }: NavbarProps) {
   return (
     <nav className="fixed top-0 w-full z-50 bg-dark/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div 
-          onClick={onViewLanding}
-          className="flex items-center gap-2 cursor-pointer select-none group"
-        >
+        <div className="flex items-center gap-2 select-none">
           {/* Isotipo SVG */}
-          <svg 
-            viewBox="0 0 90 90" 
-            className="w-8 h-8 flex-shrink-0 group-hover:scale-105 transition-transform"
+          <svg
+            viewBox="0 0 90 90"
+            className="w-8 h-8 flex-shrink-0"
           >
             <rect x="0" y="0" width="90" height="90" rx="8" fill="#D87A3D" />
             <rect x="20" y="18" width="52" height="10" fill="#16181A" />
@@ -37,20 +32,10 @@ export function Navbar({ onViewLanding, onViewRoadmap, onOpenWaitlist, isLoggedI
             Edgecute
           </span>
         </div>
-        
+
         <div className="hidden md:flex items-center gap-8 text-sm font-medium font-mono text-gray-400">
           <a href="#features" className="hover:text-copper transition-colors">/features</a>
           <a href="#backtester" className="hover:text-copper transition-colors">/backtester</a>
-          <a 
-            href="#roadmap" 
-            onClick={(e) => {
-              e.preventDefault();
-              onViewRoadmap();
-            }}
-            className="hover:text-copper transition-colors cursor-pointer"
-          >
-            /roadmap
-          </a>
         </div>
 
 
