@@ -52,7 +52,7 @@ const items: TabItem[] = [
   }
 ];
 
-export function Backtester({ onOpenWaitlist }: { onOpenWaitlist: () => void }) {
+export function Backtester() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -164,13 +164,13 @@ export function Backtester({ onOpenWaitlist }: { onOpenWaitlist: () => void }) {
                     {activeItem.intro}
                   </p>
 
-                  <button
-                    onClick={onOpenWaitlist}
+                  <a
+                    href="https://app.edgecute.com"
                     className="inline-flex items-center gap-2 text-white font-semibold hover:text-copper transition-colors group text-sm uppercase tracking-wider font-mono cursor-pointer"
                   >
                     Probar ahora
                     <ArrowRight className="w-4 h-4 text-copper group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </a>
                 </motion.div>
               </div>
 
